@@ -3817,7 +3817,7 @@ function launchMissile(pt, T, p) {
   // 视野：低于视野等级的发射卡自动追踪最近的怪
   let tgt = null;
   const st = sightTier();
-  if (st >= 0 && pt.r < st) {
+  if (st >= 0 && pt.r <= st) {
     let best = null, bd = Infinity;
     for (const m of G.mobs) {
       if (m.dead || m.wormInvis) continue;
