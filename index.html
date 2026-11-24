@@ -765,91 +765,91 @@ function angLerp(cur, target, t) {
 // =====================================================================
 const TUNE = {
   petals: {
-    basic:   { name: '基本', reload: 2.5,  dmg: [5, 8, 13, 21, 34, 55],       dur: [5, 8, 13, 21, 34, 55] },
+    basic:   { name: '基本', reload: 2.5,  dmg: [15, 8, 13, 21, 34, 55],       dur: [15, 8, 13, 21, 34, 55] },
     rose:    { name: '玫瑰',     noExtend: true, reload: 1.5,  dmg: [2.5, 4, 6.5, 10.5, 17, 27.5], dur: [2.5, 4, 6.5, 10.5, 17, 27.5], heal: [15, 24, 39, 63, 102, 165] },
-    stinger: { name: '刺',       size: 0.4, hit: 6, clusterR: 10, reload: 10,   dmg: [50, 80, 130, 210, 340, 550],  dur: [1, 1.6, 2.6, 4.2, 6.8, 11],
+    stinger: { name: '刺',       size: 0.4, hit: 6, clusterR: 10, reload: 10,   dmg: [150, 80, 130, 210, 340, 550],  dur: [3, 1.6, 2.6, 4.2, 6.8, 11],
                parts: [1, 1, 1, 1, 1, 3], cluster: true },   // 神话刺：3 瓣挤在 1 个花瓣位里
     // 叶子：伤害/耐久 = 基本 × 1.2；dps 是每秒治疗量
-    leaf:    { name: '叶子',     reload: 2.0,  dmg: [6, 9.6, 15.6, 25.2, 40.8, 66], dur: [6, 9.6, 15.6, 25.2, 40.8, 66], dps: [2.5, 4, 6.5, 10.5, 17, 27.5] },
+    leaf:    { name: '叶子',     reload: 2.0,  dmg: [18, 9.6, 15.6, 25.2, 40.8, 66], dur: [18, 9.6, 15.6, 25.2, 40.8, 66], dps: [2.5, 4, 6.5, 10.5, 17, 27.5] },
     // 米：脆皮速射，冷却 1 tick
     // 幸运草：数值同基本，lucky = 提升事件触发概率(百分点)：蚁穴出挖掘者 / 标记幽灵化 / 骰子暴击
     // 轻：一拍多瓣（1/2/2/3/3/5），散开铺满圆周，每瓣独立冷却与耐久（背包图标另用 florr 的 2_x 整图）
-    light:   { name: '轻',       size: 0.5, hit: 6, reload: 0.5,  dmg: [3, 4.8, 7.8, 12.6, 20.4, 33], dur: [1, 1.6, 2.6, 4.2, 6.8, 11],
+    light:   { name: '轻',       size: 0.5, hit: 6, reload: 0.5,  dmg: [9, 4.8, 7.8, 12.6, 20.4, 33], dur: [3, 1.6, 2.6, 4.2, 6.8, 11],
                parts: [1, 2, 2, 3, 3, 5] },
     // 更快：伤害 4、耐久 4，每装备一片按稀有度提升转速（单位 π rad/s）
-    faster:  { name: '更快',     size: 0.5, hit: 6, reload: 0.5,  dmg: [4, 6.4, 10.4, 16.8, 27.2, 44], dur: [4, 6.4, 10.4, 16.8, 27.2, 44],
+    faster:  { name: '更快',     size: 0.5, hit: 6, reload: 0.5,  dmg: [12, 6.4, 10.4, 16.8, 27.2, 44], dur: [12, 6.4, 10.4, 16.8, 27.2, 44],
                spin: [0.1, 0.2, 0.3, 0.4, 0.5, 1.2] },
     // 石头花瓣：伤害 8、耐久 20，冷却 5s
-    rock:    { name: '石头',     reload: 5,    dmg: [8, 12.8, 20.8, 33.6, 54.4, 88], dur: [40, 64, 104, 168, 272, 440] },
-    clover:  { name: '幸运草',   reload: 2.5,  dmg: [5, 8, 13, 21, 34, 55], dur: [5, 8, 13, 21, 34, 55], lucky: [2, 4, 6, 8, 10, 25] },
-    corn:    { name: '玉米',     reload: 15,   dmg: [4, 6.4, 10.4, 16.8, 27.2, 44], dur: [200, 320, 520, 840, 1360, 4400] },
-    rice:    { name: '米',       reload: 0.05, dmg: [2.5, 4, 6.5, 10.5, 17, 55], dur: [1, 1.6, 2.6, 4.2, 6.8, 11] },
+    rock:    { name: '石头',     reload: 5,    dmg: [24, 12.8, 20.8, 33.6, 54.4, 88], dur: [120, 64, 104, 168, 272, 440] },
+    clover:  { name: '幸运草',   reload: 2.5,  dmg: [15, 8, 13, 21, 34, 55], dur: [15, 8, 13, 21, 34, 55], lucky: [2, 4, 6, 8, 10, 25] },
+    corn:    { name: '玉米',     reload: 15,   dmg: [12, 6.4, 10.4, 16.8, 27.2, 44], dur: [600, 320, 520, 840, 1360, 4400] },
+    rice:    { name: '米',       reload: 0.05, dmg: [7.5, 4, 6.5, 10.5, 17, 55], dur: [3, 1.6, 2.6, 4.2, 6.8, 11] },
     // 鸢尾：命中后给 5 秒剧毒，每 tick 掉血；剧毒伤害随稀有度提升
-    iris:     { name: '鸢尾', size: 0.5, hit: 6, reload: 1.0, dmg: [0, 0, 0, 0, 0, 0], dur: [2.5, 4, 6.5, 10.5, 17, 27.5], poison: [0.5, 0.8, 1.3, 2.1, 3.4, 5.5] },
+    iris:     { name: '鸢尾', size: 0.5, hit: 6, reload: 1.0, dmg: [0, 0, 0, 0, 0, 0], dur: [2.5, 4, 6.5, 10.5, 17, 27.5], poison: [1.5, 0.8, 1.3, 2.1, 3.4, 5.5] },
     // 沙子：4 瓣一簇（神话 6 瓣），低耐久高频率
-    sand:     { name: '沙子', size: 0.4, reload: 1, dmg: [4, 6.4, 10.4, 16.8, 27.2, 44], dur: [1, 1.6, 2.6, 4.2, 6.8, 11], parts: [4, 4, 4, 4, 4, 6], cluster: true },
+    sand:     { name: '沙子', size: 0.4, reload: 1, dmg: [12, 6.4, 10.4, 16.8, 27.2, 44], dur: [3, 1.6, 2.6, 4.2, 6.8, 11], parts: [4, 4, 4, 4, 4, 4], cluster: true },
     // 磁铁：伤害/耐久普通，装备后提升掉落物吸附距离
-    magnet:   { name: '磁铁', reload: 1, dmg: [2.5, 4, 6.5, 10.5, 17, 27.5], dur: [7.5, 12, 19.5, 31.5, 51, 82.5], magnet: [64, 128, 192, 256, 320, 384] },
+    magnet:   { name: '磁铁', reload: 1, dmg: [7.5, 4, 6.5, 10.5, 17, 27.5], dur: [22.5, 12, 19.5, 31.5, 51, 82.5], magnet: [64, 128, 192, 256, 320, 384] },
     // 导弹：轨道上停 10 tick，玩家攻击时朝外发射；发射后进冷却再生成
-    missile:  { name: '导弹', noExtend: true, outward: true, outwardTip: 1.0, reload: 0.4, dmg: [13, 20.8, 33.8, 54.6, 88.4, 143], dur: [1, 1.6, 2.6, 4.2, 6.8, 11], launch: true },
+    missile:  { name: '导弹', noExtend: true, outward: true, outwardTip: 1.0, reload: 0.4, dmg: [39, 20.8, 33.8, 54.6, 88.4, 143], dur: [3, 1.6, 2.6, 4.2, 6.8, 11], launch: true },
     // 泡泡：耐久 1、伤害 0；玩家防御时爆裂，把玩家朝远离泡泡的方向弹开；每档冷却不同
     bubble:   { name: '泡泡', noExtend: true, reload: 1, reloadByR: [5, 2, 1, 0.5, 0.3, 0.1], dmg: [0, 0, 0, 0, 0, 0], dur: [1, 1, 1, 1, 1, 1], popOnGuard: true },
     // 丝兰：防御时才提供持续治疗（2× 叶子），不随攻击伸出
-    yucca:    { name: '丝兰', noExtend: true, reload: 2.5, dmg: [2.5, 4, 6.5, 10.5, 17, 27.5], dur: [2.5, 4, 6.5, 10.5, 17, 27.5], dps: [5, 8, 13, 21, 34, 55], guardHeal: true },
+    yucca:    { name: '丝兰', noExtend: true, reload: 2.5, dmg: [7.5, 4, 6.5, 10.5, 17, 27.5], dur: [7.5, 4, 6.5, 10.5, 17, 27.5], dps: [5, 8, 13, 21, 34, 55], guardHeal: true },
     // 海星：数值同磁铁；生命 ≤50% 时提供 2× 叶子的持续治疗；始终指向远离玩家的方向
-    starfish: { name: '海星', outward: true, outwardTip: -0.995, lowHpHeal: true, reload: 1, dmg: [2.5, 4, 6.5, 10.5, 17, 27.5], dur: [7.5, 12, 19.5, 31.5, 51, 82.5], dps: [5, 8, 13, 21, 34, 55] },
+    starfish: { name: '海星', outward: true, outwardTip: -0.995, lowHpHeal: true, reload: 1, dmg: [7.5, 4, 6.5, 10.5, 17, 27.5], dur: [22.5, 12, 19.5, 31.5, 51, 82.5], dps: [5, 8, 13, 21, 34, 55] },
     // 阴阳：数值同基本；装备数量会改写整体转速（见 spinSpeed）
-    yinYang: { name: '阴阳', reload: 1, dmg: [5, 8, 13, 21, 34, 55], dur: [5, 8, 13, 21, 34, 55], yinYang: true, selfSpin: 4 * Math.PI},
+    yinYang: { name: '阴阳', reload: 1, dmg: [15, 8, 13, 21, 34, 55], dur: [15, 8, 13, 21, 34, 55], yinYang: true, selfSpin: 4 * Math.PI},
     // 骨头：普通伤害 7.5、耐久 5、护甲 2.5；装备时减少玩家受到的每次伤害
-    bone: { name: '骨头', reload: 2.5, dmg: [7.5, 12, 19.5, 31.5, 51, 82.5], dur: [5, 8, 13, 21, 34, 55], armor: [3, 4.8, 7.8, 12.6, 20.4, 33] },
+    bone: { name: '骨头', reload: 2.5, dmg: [22.5, 12, 19.5, 31.5, 51, 82.5], dur: [15, 8, 13, 21, 34, 55], armor: [3, 4.8, 7.8, 12.6, 20.4, 33] },
     // 胡萝卜：和导弹同机制，但撞墙反弹、且不会自然消失；伤害 5 起
-    carrot: { name: '胡萝卜', noExtend: true, outward: true, outwardTip: 0.8181, launch: true, bounce: true, reload: 0.4, dmg: [5, 8, 13, 21, 34, 55], dur: [1, 1.6, 2.6, 4.2, 6.8, 11] },
+    carrot: { name: '胡萝卜', noExtend: true, outward: true, outwardTip: 0.8181, launch: true, bounce: true, reload: 0.4, dmg: [15, 8, 13, 21, 34, 55], dur: [3, 1.6, 2.6, 4.2, 6.8, 11] },
     // 翅膀：攻击时距离 = 128 + swing - swing*cos(t/20*π)；每秒自转 4 圈
-    wing: { name: '翅膀', reload: 2.5, dmg: [10, 16, 26, 42, 68, 110], dur: [5, 8, 13, 21, 34, 55], swing: [32, 64, 96, 128, 160, 256], selfSpin: 4 * Math.PI },
+    wing: { name: '翅膀', reload: 2.5, dmg: [30, 16, 26, 42, 68, 110], dur: [15, 8, 13, 21, 34, 55], swing: [32, 64, 96, 128, 160, 256], selfSpin: 4 * Math.PI },
     // 闪电：本身 0 伤害、耐久恒为 1；命中即碎并连锁放电（伤害无视护甲）
     lightning: { name: '闪电', reload: 2.5, dmg: [0, 0, 0, 0, 0, 0], dur: [1, 1, 1, 1, 1, 1], chain: true,
-                 chainDmg: [4, 6.4, 10.4, 16.8, 27.2, 44],
+                 chainDmg: [12, 6.4, 10.4, 16.8, 27.2, 44],
                  chainRange: [128, 160, 192, 224, 256, 320],
-                 chainMax: [3, 4, 5, 6, 7, 15] },
+                 chainMax: [3, 4, 5, 6, 7, 8] },
     // 珍珠：0 伤害、耐久 1；像导弹一样射出，撞到墙或怪就把玩家传送过去并扣血
-    pearl: { name: '珍珠', reload: 1, reloadByR: [5, 4, 3, 2, 1.5, 1], dmg: [0, 0, 0, 0, 0, 0], dur: [1, 1, 1, 1, 1, 1], launch: true, noExtend: true, teleport: true, teleportCost: [25, 20, 15, 10, 5, 0] },
+    pearl: { name: '珍珠', reload: 3, dmg: [30, 0, 0, 0, 0, 0], dur: [80, 1, 1, 1, 1, 1], launch: false, noExtend: false, teleport: false, teleportCost: [25, 20, 15, 10, 5, 0] },
     // ---- new.txt 新增花瓣 ----
-    dandelion: { name: '蒲公英', size: 0.9, reload: 1.8, dmg: [4], dur: [2], noExtend: true, launch: true, outward: true, outwardTip: 0, healDebuff: true, healDebuffAmt: 20, healDebuffSec: 15, healDebuffMax: 5 },
-    heavy:     { name: '重',     size: 1.2, reload: 6,   dmg: [6], dur: [45], knockback: 30 },
+    dandelion: { name: '蒲公英', size: 0.9, reload: 1.8, dmg: [12], dur: [6], noExtend: true, launch: true, outward: true, outwardTip: 0, healDebuff: true, healDebuffAmt: 20, healDebuffSec: 15, healDebuffMax: 5 },
+    heavy:     { name: '重',     size: 1.2, reload: 6,   dmg: [18], dur: [135], knockback: 30 },
     web:       { name: '蛛网',   size: 0.9, reload: 4,  dmg: [0], dur: [1], noCollide: true, field: 'web', fieldRadius: 200, fieldSec: 10, fieldSlow: 0.55 },
-    jelly:     { name: '水母',   size: 0.9, reload: 3,   dmg: [5], dur: [8], knockback: 12 },
+    jelly:     { name: '水母',   size: 0.9, reload: 3,   dmg: [15], dur: [24], knockback: 12 },
     // 蛋：一张卡固定 4 瓣，每一瓣召唤 1 只低一档兵蚁；该蚂蚁存活期间这一瓣不出现，蚂蚁死亡后这一瓣才开始冷却回复
     egg:       { name: '蛋',     size: 0.9, reload: 18,  dmg: [0], dur: [1], noCollide: true, summonAlly: true, summonCount: 1, parts: [4,4,4,4,4,4,4,4,4], iconOne: true, summonKind: 'soldierAnt', summonTierOffset: -1 },
-    cutter:    { name: '切割者', size: 1.1, reload: 2,   dmg: [12], dur: [16] },
-    uranium:   { name: '铀',     size: 0.9, reload: 4,  dmg: [0], dur: [1], noCollide: true, field: 'uranium', fieldRadius: 160, fieldSec: 10, fieldPoison: 0.5 },
-    rubber:    { name: '橡胶',   size: 0.9, reload: 3,   dmg: [0], dur: [10], noCollide: true, electricAbsorb: 0.5, knockbackTaken: 0.5 },
-    bur:       { name: '刺果',   size: 0.8, reload: 1.2,   dmg: [6], dur: [5], armorDebuff: 2, armorDebuffSec: 5 },
+    cutter:    { name: '切割者', size: 1.1, reload: 2,   dmg: [40], dur: [50] },
+    uranium:   { name: '铀',     size: 0.9, reload: 4,  dmg: [0], dur: [1], noCollide: true, field: 'uranium', fieldRadius: 160, fieldSec: 10, fieldPoison: 0.3 },
+    rubber:    { name: '橡胶',   size: 0.9, reload: 3,   dmg: [0], dur: [50], noCollide: true, electricAbsorb: 0.5, knockbackTaken: 0.5 },
+    bur:       { name: '刺果',   size: 0.8, reload: 1.2,   dmg: [18], dur: [15], armorDebuff: 3, armorDebuffSec: 5 },
     root:      { name: '根',     size: 0.9, reload: 4,   dmg: [0], dur: [10], noCollide: true, playerArmor: 3 },
     // 电池：没有血量，本体不与怪物 / 导弹发生任何作用，只负责“受伤时放电”
     battery:   { name: '电池',   size: 0.9, reload: 3,  dmg: [0], dur: [1], noCollide: true, ghost: true, battery: true, batteryCharges: 3 },
-    glass:     { name: '玻璃',   size: 0.9, reload: 2,   dmg: [6], dur: [3], noExtend: true, launch: true, outward: true, outwardTip: 0, pierce: true },
+    glass:     { name: '玻璃',   size: 0.9, reload: 2,   dmg: [18], dur: [9], noExtend: true, launch: true, outward: true, outwardTip: 0, pierce: true },
     // ---- new2.txt 新增花瓣 ----
-    lotus:    { name: '莲花',   size: 0.9, reload: 3, dmg: [0], dur: [10], noCollide: true, poisonAbsorb: true },
+    lotus:    { name: '莲花',   size: 0.9, reload: 3, dmg: [0], dur: [50], noCollide: true, poisonAbsorb: true },
     mark:     { name: '标记',   size: 0.9, reload: 5, dmg: [0], dur: [1], noCollide: true, ghost: true,
-                field: 'fire', fieldRadius: 120, fieldSec: 10, fieldFire: 0.3, ghostChance: 0.20 },
-    dice:     { name: '骰子',   size: 0.9, reload: 2, dmg: [4], dur: [6], crit: 30, critChance: 0.08 },   // 每档都是 8%
+                field: 'fire', fieldRadius: 120, fieldSec: 10, fieldFire: 0.15, ghostChance: 0.20 },
+    dice:     { name: '骰子',   size: 0.9, reload: 2, dmg: [12], dur: [18], crit: 30, critChance: 0.08 },   // 每档都是 8%
     mechaWeb: { name: '机械网', size: 0.9, reload: 4, dmg: [0], dur: [1], noCollide: true, ghost: true,
-                field: 'mechaWeb', fieldRadius: 160, fieldSec: 10, fieldSlow: 0.40, fieldZap: 0.3 },
+                field: 'mechaWeb', fieldRadius: 160, fieldSec: 10, fieldSlow: 0.40, fieldZap: 0.15 },
     // ---- new4.txt 新增花瓣 ----
-    cactus:   { name: '仙人掌', size: 0.9, reload: 5, dmg: [6], dur: [20], bonusHp: [25] },
+    cactus:   { name: '仙人掌', size: 0.9, reload: 5, dmg: [18], dur: [60], bonusHp: [25] },
     beetleEgg:{ name: '甲虫卵', size: 0.9, reload: 18, dmg: [0], dur: [1], noCollide: true, summonAlly: true, summonCount: 1, parts: [1,1,1,1,1,1,1,1,1], iconOne: true, summonKind: 'beetle', summonTierOffset: -1 },
     ghostEgg: { name: '幽灵卵', size: 0.9, reload: 18, dmg: [0], dur: [1], noCollide: true, summonAlly: true, summonCount: 1, parts: [3,3,3,3,3,3,3,3,3], iconOne: true, summonKind: 'ghost', summonTierOffset: -1 },
-    pincer:   { name: '钳子', size: 0.9, reload: 3, dmg: [7], dur: [8], pincerSlow: true, poison: [0.4] },
-    soil:     { name: '土壤', size: 0.9, reload: 5, dmg: [0], dur: [30], noCollide: true, ghost: true, bonusHp: [60], playerSlow: 0.08 },
-    fangs:    { name: '獠牙', size: 0.9, reload: 2.5, dmg: [8], dur: [6], lifesteal: 0.3 },
+    pincer:   { name: '钳子', size: 0.9, reload: 3, dmg: [21], dur: [24], pincerSlow: true, poison: [1.2] },
+    soil:     { name: '土壤', size: 0.9, reload: 5, dmg: [0], dur: [90], noCollide: true, ghost: true, bonusHp: [60], playerSlow: 0.08 },
+    fangs:    { name: '獠牙', size: 0.9, reload: 2.5, dmg: [24], dur: [18], lifesteal: 0.3 },
     stick:    { name: '枯枝', size: 0.9, reload: 18, dmg: [0], dur: [1], noCollide: true, summonAlly: true, summonCount: 1, parts: [2,2,2,2,2,2,2,2,2], iconOne: true, summonKind: 'sandstorm', summonTierOffset: -1 },
-    relic:    { name: '遗物', size: 0.9, reload: 6, dmg: [4], dur: [14], deathSummon: { kind: 'termiteSoldier', offset: -1 } },
-    plank:    { name: '木板', size: 1.0, reload: 3, dmg: [0], dur: [40], noCollide: true, plank: true },
-    talisman: { name: '护符', size: 0.9, reload: 4, dmg: [0], dur: [12], noCollide: true, ghost: true, dodgeChance: [0.10] },
-    poisonMissile: { name: '毒导弹', size: 0.9, reload: 1.2, dmg: [10], dur: [1], noExtend: true, launch: true, outward: true, outwardTip: 1.0, shotPoison: [0.4] },
-    electricMissile: { name: '电导弹', size: 0.9, reload: 1.2, dmg: [6], dur: [1], noExtend: true, launch: true, outward: true, outwardTip: 1.0, shotChain: true,
-                chainDmg: [8], chainRange: [160], chainMax: [4] },
-    fireMissile: { name: '火导弹', size: 0.9, reload: 1.4, dmg: [8], dur: [1], noExtend: true, launch: true, outward: true, outwardTip: 1.0, shotFire: [1.2], shotFireRadius: [140] },
+    relic:    { name: '遗物', size: 0.9, reload: 6, dmg: [12], dur: [42], deathSummon: { kind: 'termiteSoldier', offset: -1 } },
+    plank:    { name: '木板', size: 1.0, reload: 3, dmg: [0], dur: [120], noCollide: true, plank: true },
+    talisman: { name: '护符', size: 0.9, reload: 4, dmg: [0], dur: [36], noCollide: true, ghost: true, dodgeChance: [0.30] },
+    poisonMissile: { name: '毒导弹', size: 0.9, reload: 1.2, dmg: [30], dur: [1], noExtend: true, launch: true, outward: true, outwardTip: 1.0, shotPoison: [1.2] },
+    electricMissile: { name: '电导弹', size: 0.9, reload: 1.2, dmg: [18], dur: [1], noExtend: true, launch: true, outward: true, outwardTip: 1.0, shotChain: true,
+                chainDmg: [24], chainRange: [160], chainMax: [4] },
+    fireMissile: { name: '火导弹', size: 0.9, reload: 1.4, dmg: [24], dur: [1], noExtend: true, launch: true, outward: true, outwardTip: 1.0, shotFire: [3.6], shotFireRadius: [140] },
     sight:    { name: '视野', size: 0.9, reload: 6, dmg: [0], dur: [20], noCollide: true, ghost: true, sight: true },
   },
 
