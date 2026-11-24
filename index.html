@@ -6454,7 +6454,7 @@ function update(dt) {
     if (T.summonAlly && !pt.summoned && pt.age >= 1) {
       pt.summoned = true;
       // 所有群系都可以召唤
-      const tier = clamp(pt.r + (T.summonTierOffset || 0), 0, 4);
+      const tier = clamp(pt.r + (T.summonTierOffset || 0), 0, 8);
       const cnt = Math.max(1, T.summonCount || 1);
       let made = 0;
       for (let si = 0; si < cnt; si++) if (spawnAlly(T.summonKind, tier, p.x, p.y, pt)) made++;
